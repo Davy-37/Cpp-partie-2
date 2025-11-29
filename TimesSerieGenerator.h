@@ -1,25 +1,17 @@
 #pragma once
-
-#include <iostream>
 #include <vector>
-using namespace std;
+#include <iostream>
 
+class TimeSeriesGenerator {
+protected:
+    int seed;
 
-class TimesSerieGenerator
-{
-private:
-	int seed;
 public:
-	TimesSerieGenerator();
-	TimesSerieGenerator(int seed);
-	virtual ~TimesSerieGenerator();
+    TimeSeriesGenerator();
+    explicit TimeSeriesGenerator(int s);
+    virtual ~TimeSeriesGenerator() = default;
 
-	virtual int getSeed() const;
-	virtual void setSeed(int seed);
-	virtual int getNextValue();
+    virtual std::vector<double> generateTimeSeries(int size) = 0;
 
-	virtual vector <double> generateTimeSeries(int) = 0;
-
-	static void printTimeSerie(const vector<double>& );
+    static void printTimeSeries(const std::vector<double>& ts);
 };
-

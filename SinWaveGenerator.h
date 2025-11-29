@@ -1,28 +1,16 @@
 #pragma once
 #include "TimesSerieGenerator.h"
+#include <vector>
 
-class SinWaveGenerator : TimesSerieGenerator
-{
+class SinWaveGenerator : public TimeSeriesGenerator {
 private:
-	double amplitude;
-	double frequency;
-	double phase;
+    double A;
+    double w;
+    double phi;
+
 public:
-	SinWaveGenerator();
-	SinWaveGenerator(int seed, double amplitude, double frequency, double phase);
-	virtual ~SinWaveGenerator() = default;
+    SinWaveGenerator();
+    SinWaveGenerator(double A_, double w_, double phi_, int s = 0);
 
-	virtual double getAmplitude() const;
-	virtual void setAmplitude(double amplitude);
-	virtual double getFrequency() const;
-	virtual void setFrequency(double frequency);
-	virtual double getPhase() const;
-	virtual void setPhase(double phase);
-
-	virtual int getNextValue() override;
-
-	virtual vector<double> generateTimeSeries(int) override;
-
-
+    std::vector<double> generateTimeSeries(int size) override;
 };
-
